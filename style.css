@@ -13,6 +13,9 @@ body {
   border-radius: 10px;
   margin-bottom: 20px;
 }
+h2{
+  font-weight: normal;
+}
 .options {
   display: flex;
   flex-direction: column;
@@ -39,10 +42,24 @@ body {
     color: white;
 }
 .correct{
-  background-color: green;
+  border: 1.5px solid rgb(24, 168, 24);
+  background-color: rgb(201, 231, 201);
+  color: rgb(24,168,24);
 }
 .incorrect{
-  background-color: red;
+  border: 1.5px solid red;
+  background-color: rgba(239, 199, 199, 0.941);
+  color: red;
+}
+.message{
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  width: 80px;
+  padding: 5px 5px;
+  border-radius: 5px;
+  font-size: 10px;
+  text-align: center;
 }
 .result-container{
   background-color: white;

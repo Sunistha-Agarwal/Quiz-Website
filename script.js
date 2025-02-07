@@ -65,15 +65,16 @@ const options = document.querySelectorAll(".option");
 const optionsContainer = document.querySelector(".options");
 const navButtons = document.querySelector(".nav-buttons");
 const navButton = document.querySelectorAll(".nav-button");
+const message = document.querySelector(".message");
 let score = 0; //initializing score to 0
-let correct=0;
-let incorrect=0;
+let correct = 0;
+let incorrect = 0;
 document.querySelector(".score").innerText = score;
 
 showQuestion();
 
 //calling show question based on button pressed
-navButtons.addEventListener("click", (e) => {  
+navButtons.addEventListener("click", (e) => {
   if (e.target.classList.contains("nav-button")) {
     navButton[currentQuestionIndex].classList.remove("active");
     currentQuestionIndex = e.target.innerText - 1;
@@ -109,7 +110,8 @@ function startTimer() {
 
 //handling timeout
 function handleTimeout() {
-  document.querySelector(".message").innerText = "Time's up!";
+  message.innerText = "Time's up!";
+  message.classList.add("incorrect");
   calculateScore(4);
   nextStep(); //calling next function to display next question or final message if all questions are attempted
 }
@@ -122,7 +124,7 @@ optionsContainer.addEventListener("click", (e) => {
       const answeredIndex = quizData[currentQuestionIndex].options.indexOf(
         e.target.textContent
       );
-    //   navButtons[currentQuestionIndex + 1].classList.add("attempted");
+      //   navButtons[currentQuestionIndex + 1].classList.add("attempted");
       calculateScore(answeredIndex, currentQuestionIndex);
     }
   }
@@ -140,14 +142,14 @@ function calculateScore(answeredIndex) {
   ) {
     correct++;
     score += 4;
-    document.querySelector(".message").innerText = "Correct Answer!";
-    document.querySelector(".message").classList.add("correct");
+    message.innerText = "Correct Answer!";
+    message.classList.add("correct");
     options[answeredIndex].classList.add("correct");
   } else {
     incorrect++;
     score--;
-    document.querySelector(".message").innerText = "Incorrect Answer!";
-    document.querySelector(".message").classList.add("incorrect");
+    message.innerText = "Incorrect Answer!";
+    message.classList.add("incorrect");
     options[answeredIndex].classList.add("incorrect");
   }
 
@@ -160,36 +162,46 @@ function calculateScore(answeredIndex) {
 function nextStep() {
   //checking if all questions are attempted or not
   if (quizData.every((q) => q.attemptedOptionIndex !== -1)) {
+    //hiding previous elements
+    document.querySelector(".question-container").remove();
+    navButtons.remove();
     clearInterval(timer);
-    document.querySelector(".message").innerText = "";
-    document.querySelector(".time").innerText = "";
+    message.remove();
+    document.querySelector(".time").innerText = "0";
     displayFinalMessage();
   }
 
   //calling the next function
-  if (currentQuestionIndex + 1 < quizData.length) {
-    setTimeout(() => {
-        navButton[currentQuestionIndex].classList.remove("active");
-        document.querySelector(".message").classList.remove("incorrect","correct");
-        const answeredIndex = quizData[currentQuestionIndex].attemptedOptionIndex;
-        if (answeredIndex < 4 )
-          options[answeredIndex].classList.remove("incorrect","correct");
-        document.querySelector(".message").innerText = ""; //clearing the message when new question is shown
-        currentQuestionIndex++;
-        showQuestion();
-    }, 700); //delays the calling of next function to display message properly
-  }
+
+  setTimeout(() => {
+    navButton[currentQuestionIndex].classList.remove("active");
+    document.querySelector(".message").classList.remove("incorrect", "correct");
+    document.querySelector(".message").classList.remove("incorrect");
+    const answeredIndex = quizData[currentQuestionIndex].attemptedOptionIndex;
+    if (answeredIndex < 4)
+      options[answeredIndex].classList.remove("incorrect", "correct");
+    document.querySelector(".message").innerText = ""; //clearing the message when new question is shown
+    if (currentQuestionIndex + 1 < quizData.length) {
+      currentQuestionIndex++;
+      showQuestion();
+    }
+  }, 700); //delays the calling of next function to display message properly
 }
 
 //displaying final message
 function displayFinalMessage() {
-  //hiding previous elements
-  document.querySelector(".question-container").remove();
-  navButtons.remove();
-  //displaying the result elements 
+  //displaying the result elements
   document.querySelector(".result-container").classList.add("active");
   document.querySelector("#final-score").innerText = score;
-  document.querySelector("#attempted-count").innerText = correct+incorrect;
+  document.querySelector("#attempted-count").innerText = correct + incorrect;
   document.querySelector("#correct-count").innerText = correct;
   document.querySelector("#incorrect-count").innerText = incorrect;
 }
+
+const restart = document.querySelector("#restart-button");
+//restart the quiz
+restart.addEventListener("click", () => {
+  currentQuestionIndex = 0;
+  score = 0;
+  showQuestion();
+});
