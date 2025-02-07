@@ -163,20 +163,20 @@ function nextStep() {
   //checking if all questions are attempted or not
   if (quizData.every((q) => q.attemptedOptionIndex !== -1)) {
     //hiding previous elements
-    document.querySelector(".question-container").remove();
-    navButtons.remove();
-    clearInterval(timer);
-    message.remove();
+    document.querySelector(".question-container").style.display = "none";
+    navButtons.style.display = "none";
+    message.style.display = "none";
     document.querySelector(".time").innerText = "0";
+    clearInterval(timer);
     displayFinalMessage();
   }
 
   //calling the next function
 
   setTimeout(() => {
+    //resetting previous values
     navButton[currentQuestionIndex].classList.remove("active");
-    document.querySelector(".message").classList.remove("incorrect", "correct");
-    document.querySelector(".message").classList.remove("incorrect");
+    message.classList.remove("incorrect", "correct");
     const answeredIndex = quizData[currentQuestionIndex].attemptedOptionIndex;
     if (answeredIndex < 4)
       options[answeredIndex].classList.remove("incorrect", "correct");
@@ -201,7 +201,5 @@ function displayFinalMessage() {
 const restart = document.querySelector("#restart-button");
 //restart the quiz
 restart.addEventListener("click", () => {
-  currentQuestionIndex = 0;
-  score = 0;
-  showQuestion();
+  location.reload();
 });

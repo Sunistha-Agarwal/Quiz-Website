@@ -7,47 +7,50 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="header">
-      <p>Score: <span class="score"></span></p>
-      <p>Time: <span class="time"></span>s</p>
-    </div>
-
-    <!-- this div is for displaying the quiz area -->
-    <div class="question-container">
-      <h2 class="question"></h2>
-      <div class="options">
-        <button class="option"></button>
-        <button class="option"></button>
-        <button class="option"></button>
-        <button class="option"></button>
+    <div class="container">
+      <div class="header">
+        <p>Score: <span class="score"></span></p>
+        <p>Time: <span class="time"></span>s</p>
       </div>
-    </div>
-
-    <!-- this div is for navigating through -->
-    <div class="nav-buttons">
-      <button class="nav-button">1</button>
-      <button class="nav-button">2</button>
-      <button class="nav-button">3</button>
-      <button class="nav-button">4</button>
-      <button class="nav-button">5</button>
-      <button class="nav-button">6</button>
-    </div>
-
-    <!-- the result is contained here -->
-    <div class="result-container">
-      <h2>Quiz Completed!</h2>
-      <div>
-        <p>Your Final Score: <span id="final-score"></span></p>
-        <p>Total Questions Attempted: <span id="attempted-count"></span></p>
-        <p>Correct Answers: <span id="correct-count"></span></p>
-        <p>Incorrect Answers: <span id="incorrect-count"></span></p>
+  
+      <!-- this div is for displaying the quiz area -->
+      <div class="question-container">
+        <h2 class="question"></h2>
+        <div class="options">
+          <button class="option"></button>
+          <button class="option"></button>
+          <button class="option"></button>
+          <button class="option"></button>
+        </div>
       </div>
-      <button id="restart-button">Restart Quiz</button>
+  
+      <!-- this div is for navigating through -->
+      <div class="nav-buttons">
+        <button class="nav-button">1</button>
+        <button class="nav-button">2</button>
+        <button class="nav-button">3</button>
+        <button class="nav-button">4</button>
+        <button class="nav-button">5</button>
+        <button class="nav-button">6</button>
+      </div>
+  
+      <!-- the result is contained here -->
+      <div class="result-container">
+        <h2>Quiz Completed!</h2>
+        <div>
+          <p>Your Final Score: <span id="final-score"></span></p>
+          <p>Total Questions Attempted: <span id="attempted-count"></span></p>
+          <p>Correct Answers: <span id="correct-count"></span></p>
+          <p>Incorrect Answers: <span id="incorrect-count"></span></p>
+        </div>
+        <button id="restart-button">Restart Quiz</button>
+      </div>
+  
+      <!-- this div displays correct or incorrect -->
+      <div class="message"></div>
+  
     </div>
-
-    <!-- this div displays correct or incorrect -->
-    <div class="message"></div>
-
+    
     <script src="script.js"></script>
   </body>
 </html>

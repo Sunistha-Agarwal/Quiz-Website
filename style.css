@@ -2,6 +2,10 @@ body {
   font-family: sans-serif;
   background-color: #f4f4f4;
 }
+.container{
+  max-width: 1150px;
+  margin: 0 auto;
+}
 .header {
   display: flex;
   justify-content: space-between;
@@ -15,23 +19,25 @@ body {
 }
 h2{
   font-weight: normal;
+  font-size: 30px;
 }
 .options {
   display: flex;
   flex-direction: column;
+  margin-top: 10px;
 }
 .option {
-  margin-bottom: 10px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  border: none;
-  border-radius: 5px;
+  margin-bottom: 15px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border: 2px solid rgb(205, 205, 205);
+  border-radius: 10px;
 }
 .nav-button{
     background-color: #e2e8f0;
     border: none;
-    border-radius: 40px;
-    padding: 5px 10px;    
+    border-radius: 50px;
+    padding: 10px 15px;    
 }
 .nav-button.attempted{
     background-color: #e2e8f0;
@@ -48,17 +54,16 @@ h2{
 }
 .incorrect{
   border: 1.5px solid red;
-  background-color: rgba(239, 199, 199, 0.941);
+  background-color: rgb(255, 171, 171);
   color: red;
 }
 .message{
   position: fixed;
   bottom: 10px;
   right: 10px;
-  width: 80px;
-  padding: 5px 5px;
+  padding: 10px 10px;
   border-radius: 5px;
-  font-size: 10px;
+  font-size: 15px;
   text-align: center;
 }
 .result-container{
@@ -66,6 +71,7 @@ h2{
   padding: 20px;
   text-align: center;
   display: none;
+  border-radius: 10px;
 }
 #restart-button{
   padding: 10px 15px;
